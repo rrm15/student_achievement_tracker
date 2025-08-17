@@ -25,7 +25,7 @@ public class Project {
     private String description;
     
     @NotBlank(message = "Project category is required")
-    private String category; // Academic, Personal, Professional, etc.
+    private String category; // like Academic, Personal, Professional
     
     private LocalDate startDate;
     private LocalDate endDate;
@@ -39,10 +39,9 @@ public class Project {
     private String outcomes;
     private String images;
     
-    // Constructor
     public Project() {}
     
-    // Getters and Setters
+    // getters and setters
     public Long getId() {
         return id;
     }

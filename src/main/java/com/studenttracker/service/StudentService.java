@@ -31,7 +31,7 @@ public class StudentService {
             throw new RuntimeException("Email already registered");
         }
         
-        // Create new student
+        // create new student
         Student student = new Student();
         student.setFirstName(registrationDto.getFirstName());
         student.setLastName(registrationDto.getLastName());
@@ -47,10 +47,10 @@ public class StudentService {
         student.setResumeTemplate(registrationDto.getResumeTemplate());
         student.setPreferredFormat(registrationDto.getPreferredFormat());
         
-        // Save student first to get ID
+        // save student first to get ID
         student = studentRepository.save(student);
         
-        // Add education history
+        // add education history
         if (registrationDto.getEducationHistory() != null) {
             List<Education> educationList = registrationDto.getEducationHistory().stream()
                 .map(eduDto -> {
@@ -73,7 +73,7 @@ public class StudentService {
             student.setEducationHistory(educationList);
         }
         
-        // Add achievements
+        // add achievements
         if (registrationDto.getAchievements() != null) {
             List<Achievement> achievementList = registrationDto.getAchievements().stream()
                 .map(achDto -> {
@@ -94,7 +94,7 @@ public class StudentService {
             student.setAchievements(achievementList);
         }
         
-        // Add skills
+        // add skills
         if (registrationDto.getSkills() != null) {
             List<Skill> skillList = registrationDto.getSkills().stream()
                 .map(skillDto -> {
@@ -112,7 +112,7 @@ public class StudentService {
             student.setSkills(skillList);
         }
         
-        // Add projects
+        // add projects
         if (registrationDto.getProjects() != null) {
             List<Project> projectList = registrationDto.getProjects().stream()
                 .map(projDto -> {
@@ -138,7 +138,7 @@ public class StudentService {
             student.setProjects(projectList);
         }
         
-        // Add experiences
+        // add experiences
         if (registrationDto.getExperiences() != null) {
             List<Experience> experienceList = registrationDto.getExperiences().stream()
                 .map(expDto -> {
@@ -164,7 +164,7 @@ public class StudentService {
             student.setExperiences(experienceList);
         }
         
-        // Save the complete student with all relationships
+        // save everything
         return studentRepository.save(student);
     }
     

@@ -53,7 +53,7 @@ public class Student {
     @Pattern(regexp = "^[0-9]{6}$", message = "PIN code must be 6 digits")
     private String pinCode;
     
-    // Educational Details
+    // student's education, skills, projects, etc
     @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Education> educationHistory;
     
@@ -69,21 +69,20 @@ public class Student {
     @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Experience> experiences;
     
-    // Resume preferences
+    // for resume generation
     private String resumeTemplate = "modern";
     private String preferredFormat = "PDF";
     
-    // Timestamps
+    // when student was created/updated
     private LocalDate createdAt;
     private LocalDate updatedAt;
     
-    // Constructor
     public Student() {
         this.createdAt = LocalDate.now();
         this.updatedAt = LocalDate.now();
     }
     
-    // Getters and Setters
+    // getters and setters
     public Long getId() {
         return id;
     }

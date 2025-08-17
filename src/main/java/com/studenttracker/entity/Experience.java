@@ -27,7 +27,7 @@ public class Experience {
     private String jobDescription;
     
     @NotBlank(message = "Experience type is required")
-    private String experienceType; // Internship, Part-time, Full-time, Freelance
+    private String experienceType; // like Internship, Part-time, Full-time
     
     @NotNull(message = "Start date is required")
     private LocalDate startDate;
@@ -43,10 +43,9 @@ public class Experience {
     private String salary;
     private String reasonForLeaving;
     
-    // Constructor
     public Experience() {}
     
-    // Getters and Setters
+    // getters and setters
     public Long getId() {
         return id;
     }

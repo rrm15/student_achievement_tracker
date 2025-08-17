@@ -19,7 +19,7 @@ public class Skill {
     private String name;
     
     @NotBlank(message = "Skill category is required")
-    private String category; // Technical, Soft Skills, Languages, etc.
+    private String category; // like Technical, Soft Skills, Languages
     
     @NotNull(message = "Proficiency level is required")
     @Min(value = 1, message = "Proficiency level must be between 1 and 5")
@@ -30,10 +30,9 @@ public class Skill {
     private String certifications;
     private Integer yearsOfExperience;
     
-    // Constructor
     public Skill() {}
     
-    // Getters and Setters
+    // getters and setters
     public Long getId() {
         return id;
     }

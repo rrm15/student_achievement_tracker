@@ -39,16 +39,15 @@ public class Education {
     private Double cgpaPercentage;
     
     @NotBlank(message = "Grade scale is required")
-    private String gradeScale; // e.g., "4.0", "10.0", "Percentage"
+    private String gradeScale; // like 4.0, 10.0, or Percentage
     
     private String achievements;
     private String activities;
     private String description;
     
-    // Constructor
     public Education() {}
     
-    // Getters and Setters
+    // getters and setters
     public Long getId() {
         return id;
     }

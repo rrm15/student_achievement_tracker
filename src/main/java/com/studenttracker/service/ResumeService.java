@@ -39,15 +39,15 @@ public class ResumeService {
         PdfDocument pdf = new PdfDocument(writer);
         Document document = new Document(pdf);
         
-        // Set margins
+        // set margins
         document.setMargins(50, 50, 50, 50);
         
-        // Create fonts
+        // create fonts
         PdfFont titleFont = PdfFontFactory.createFont(StandardFonts.HELVETICA_BOLD);
         PdfFont headingFont = PdfFontFactory.createFont(StandardFonts.HELVETICA_BOLD);
         PdfFont bodyFont = PdfFontFactory.createFont(StandardFonts.HELVETICA);
         
-        // Header Section
+        // header section
         Paragraph header = new Paragraph(student.getFullName())
             .setFont(titleFont)
             .setFontSize(24)
@@ -55,7 +55,7 @@ public class ResumeService {
             .setMarginBottom(10);
         document.add(header);
         
-        // Contact Information
+        // contact info
         Paragraph contactInfo = new Paragraph()
             .setFont(bodyFont)
             .setFontSize(10)
@@ -66,7 +66,7 @@ public class ResumeService {
         contactInfo.add(student.getAddress() + ", " + student.getCity() + ", " + student.getState() + " " + student.getPinCode() + ", " + student.getCountry());
         document.add(contactInfo);
         
-        // Education Section
+        // education section
         if (student.getEducationHistory() != null && !student.getEducationHistory().isEmpty()) {
             addSectionHeader(document, "EDUCATION", headingFont);
             
@@ -95,11 +95,11 @@ public class ResumeService {
             }
         }
         
-        // Skills Section
+        // skills section
         if (student.getSkills() != null && !student.getSkills().isEmpty()) {
             addSectionHeader(document, "SKILLS", headingFont);
             
-            // Group skills by category
+            // group skills by category
             var skillsByCategory = student.getSkills().stream()
                 .collect(java.util.stream.Collectors.groupingBy(skill -> skill.getCategory()));
             
@@ -125,7 +125,7 @@ public class ResumeService {
             }
         }
         
-        // Projects Section
+        // projects section
         if (student.getProjects() != null && !student.getProjects().isEmpty()) {
             addSectionHeader(document, "PROJECTS", headingFont);
             
@@ -157,7 +157,7 @@ public class ResumeService {
             }
         }
         
-        // Experience Section
+        // experience section
         if (student.getExperiences() != null && !student.getExperiences().isEmpty()) {
             addSectionHeader(document, "EXPERIENCE", headingFont);
             
@@ -188,7 +188,7 @@ public class ResumeService {
             }
         }
         
-        // Achievements Section
+        // achievements section
         if (student.getAchievements() != null && !student.getAchievements().isEmpty()) {
             addSectionHeader(document, "ACHIEVEMENTS & AWARDS", headingFont);
             
@@ -222,7 +222,7 @@ public class ResumeService {
             .setMarginBottom(10)
             .setTextAlignment(TextAlignment.LEFT);
         
-        // Add underline
+        // add underline
         Line line = new Line(0, 0, 500, 0);
         line.setStrokeColor(ColorConstants.BLACK);
         

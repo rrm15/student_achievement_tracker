@@ -116,7 +116,7 @@ public class StudentController {
         }
     }
     
-    // Helper method to create Map
+    // helper method to create Map
     private java.util.Map<String, Object> Map(String key, Object value) {
         java.util.Map<String, Object> map = new java.util.HashMap<>();
         map.put(key, value);
