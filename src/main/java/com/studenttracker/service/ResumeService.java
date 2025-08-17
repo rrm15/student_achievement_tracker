@@ -4,8 +4,6 @@ import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.*;
-import com.itextpdf.layout.property.TextAlignment;
-import com.itextpdf.layout.property.UnitValue;
 import com.itextpdf.kernel.colors.ColorConstants;
 import com.itextpdf.kernel.font.PdfFont;
 import com.itextpdf.kernel.font.PdfFontFactory;
@@ -51,7 +49,6 @@ public class ResumeService {
         Paragraph header = new Paragraph(student.getFullName())
             .setFont(titleFont)
             .setFontSize(24)
-            .setTextAlignment(TextAlignment.CENTER)
             .setMarginBottom(10);
         document.add(header);
         
@@ -59,7 +56,6 @@ public class ResumeService {
         Paragraph contactInfo = new Paragraph()
             .setFont(bodyFont)
             .setFontSize(10)
-            .setTextAlignment(TextAlignment.CENTER)
             .setMarginBottom(20);
         
         contactInfo.add(student.getEmail() + " | " + student.getPhoneNumber() + "\n");
@@ -219,14 +215,14 @@ public class ResumeService {
             .setFont(font)
             .setFontSize(14)
             .setMarginTop(20)
-            .setMarginBottom(10)
-            .setTextAlignment(TextAlignment.LEFT);
+            .setMarginBottom(10);
         
         // add underline
-        Line line = new Line(0, 0, 500, 0);
-        line.setStrokeColor(ColorConstants.BLACK);
+        Paragraph underline = new Paragraph("_".repeat(50))
+            .setFont(font)
+            .setFontSize(10);
         
         document.add(sectionHeader);
-        document.add(line);
+        document.add(underline);
     }
 }

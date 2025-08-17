@@ -48,14 +48,14 @@ public class StudentService {
         student.setPreferredFormat(registrationDto.getPreferredFormat());
         
         // save student first to get ID
-        student = studentRepository.save(student);
+        final Student finalStudent = studentRepository.save(student);
         
         // add education history
         if (registrationDto.getEducationHistory() != null) {
             List<Education> educationList = registrationDto.getEducationHistory().stream()
                 .map(eduDto -> {
                     Education education = new Education();
-                    education.setStudent(student);
+                    education.setStudent(finalStudent);
                     education.setInstitutionName(eduDto.getInstitutionName());
                     education.setDegreeName(eduDto.getDegreeName());
                     education.setFieldOfStudy(eduDto.getFieldOfStudy());
@@ -70,7 +70,7 @@ public class StudentService {
                     return education;
                 })
                 .collect(Collectors.toList());
-            student.setEducationHistory(educationList);
+            finalStudent.setEducationHistory(educationList);
         }
         
         // add achievements
@@ -78,7 +78,7 @@ public class StudentService {
             List<Achievement> achievementList = registrationDto.getAchievements().stream()
                 .map(achDto -> {
                     Achievement achievement = new Achievement();
-                    achievement.setStudent(student);
+                    achievement.setStudent(finalStudent);
                     achievement.setTitle(achDto.getTitle());
                     achievement.setDescription(achDto.getDescription());
                     achievement.setCategory(achDto.getCategory());
@@ -91,7 +91,7 @@ public class StudentService {
                     return achievement;
                 })
                 .collect(Collectors.toList());
-            student.setAchievements(achievementList);
+            finalStudent.setAchievements(achievementList);
         }
         
         // add skills
@@ -99,7 +99,7 @@ public class StudentService {
             List<Skill> skillList = registrationDto.getSkills().stream()
                 .map(skillDto -> {
                     Skill skill = new Skill();
-                    skill.setStudent(student);
+                    skill.setStudent(finalStudent);
                     skill.setName(skillDto.getName());
                     skill.setCategory(skillDto.getCategory());
                     skill.setProficiencyLevel(skillDto.getProficiencyLevel());
@@ -109,7 +109,7 @@ public class StudentService {
                     return skill;
                 })
                 .collect(Collectors.toList());
-            student.setSkills(skillList);
+            finalStudent.setSkills(skillList);
         }
         
         // add projects
@@ -117,7 +117,7 @@ public class StudentService {
             List<Project> projectList = registrationDto.getProjects().stream()
                 .map(projDto -> {
                     Project project = new Project();
-                    project.setStudent(student);
+                    project.setStudent(finalStudent);
                     project.setTitle(projDto.getTitle());
                     project.setDescription(projDto.getDescription());
                     project.setCategory(projDto.getCategory());
@@ -135,7 +135,7 @@ public class StudentService {
                     return project;
                 })
                 .collect(Collectors.toList());
-            student.setProjects(projectList);
+            finalStudent.setProjects(projectList);
         }
         
         // add experiences
@@ -143,7 +143,7 @@ public class StudentService {
             List<Experience> experienceList = registrationDto.getExperiences().stream()
                 .map(expDto -> {
                     Experience experience = new Experience();
-                    experience.setStudent(student);
+                    experience.setStudent(finalStudent);
                     experience.setCompanyName(expDto.getCompanyName());
                     experience.setJobTitle(expDto.getJobTitle());
                     experience.setJobDescription(expDto.getJobDescription());
@@ -161,11 +161,11 @@ public class StudentService {
                     return experience;
                 })
                 .collect(Collectors.toList());
-            student.setExperiences(experienceList);
+            finalStudent.setExperiences(experienceList);
         }
         
         // save everything
-        return studentRepository.save(student);
+        return studentRepository.save(finalStudent);
     }
     
     public Optional<Student> getStudentById(Long id) {
